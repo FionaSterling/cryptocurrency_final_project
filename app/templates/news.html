@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Crypto News - {{ super() }}{% endblock %}
+
+{% block app_content %}
+  <div class="container">
+    <h2>Cryptocurrency News - Top Headlines</h2>
+    {% for article in news.articles[0:9] %}
+        {% if loop.index == 1 or loop.index % 3 == 1 %}
+          <div class="row extra-margin">
+        {% endif %}
+          <div class="col-md card">
+            <img class="card-img-top" src="{{ article.urlToImage }}" alt="Placeholder Image">
+            <div class="card-title"><a class="article_pic" target="_blank" href="{{ article.url}}">{{ article.title }}</a></div>
+            <div class="card-subtitle">{{ article.publishedAt[0:10] }}</div>
+            <div class="card-text">{{ article.description }}</div>
+          </div> <!-- Ends card -->
+        {% if loop.index == loop.length and loop.index % 3 == 1 %}
+          <div class="col-md no-box-space"></div>
+          <div class="col-md no-box-space"></div>
+        {% elif loop.index == loop.length and loop.index % 3 == 2 %}
+          <div class="col-md no-box-space"></div>
+        {% endif %}
+        {% if loop.index % 3 == 0 or loop.index == loop.length %}
+          </div> <!-- Ends row for cards -->
+        {% endif %}
+    {% endfor %}
+
+    <h6>News from Crypto Coins News API, https://www.ccn.com</h6>
+  </div><!--Ends container-->
+
+{% endblock %}

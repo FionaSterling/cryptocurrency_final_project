@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - {{ super() }}{% endblock %}
+
+
+{% block app_content %}
+<div class="container center">
+  <div class="dropdown ">
+    <button onclick="myFunction()" class="dropbtn">Click Here to Search For a Cryptocurrency...</button>
+    <div id="myDropdown" class="dropdown-content">
+      <input type="text" placeholder="Search..." id="myInput" onkeyup="filterFunction()">
+      {% for currency in currencies %}
+        <a href="{{ url_for('currency', id=currency.id)}}">{{ currency.id }}</a>
+      {% endfor %}
+    </div><!--Ending div for myDropdown-->
+  </div><!--Ending div for dropdown-->
+</div><!--Ending div for row-->
+
+
+  <!-- Starting script for function to allow users to search/filter names-->
+  <script>
+  /* When the user clicks on the button,
+  toggle between hiding and showing the dropdown content */
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+  function filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdown");
+    a = div.getElementsByTagName("a");
+    for (i = 0; i < a.length; i++) {
+      if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+          a[i].style.display = "";
+      } else {
+          a[i].style.display = "none";
+      }
+    }
+  }
+  </script>
+{% endblock %}
