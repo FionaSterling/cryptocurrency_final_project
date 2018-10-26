@@ -25,7 +25,7 @@ def candlesGraph(candles):
 
     box_plot.render()
 
-    path = os.path.abspath(os.path.dirname(__file__)) + './static/images/'
+    path = os.path.abspath(os.path.dirname(__file__)) + '/static/images/'
     filename = 'candles.svg'
     url = path + filename
     box_plot.render_to_file(url)
