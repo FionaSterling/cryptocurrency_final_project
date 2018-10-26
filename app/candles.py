@@ -11,6 +11,7 @@ darken_style = DarkenStyle('#4CAF50')
 
 
 def candlesGraph(candles):
+    
     box_plot = pygal.Box(show_legend=False, style=darken_style)
     box_plot.title = '1-Month Candlestick Graph (USD)'
 
