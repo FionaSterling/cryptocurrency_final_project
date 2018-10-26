@@ -33,7 +33,7 @@ def pricesGraph(candles):
     date_chart.add("Closing Prices", closings)
 
 
-    path = os.path.abspath(os.path.dirname(__file__)) + './static/images/'
+    path = os.path.abspath(os.path.dirname(__file__)) + '/static/images/'
     filename = 'prices.svg'
     url = path + filename
     date_chart.render_to_file(url)
