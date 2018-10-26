@@ -52,3 +52,10 @@ def news():
     # print(news['articles'][3]['title'])
     # print(news['articles'][0]['urlToImage'])
     return render_template('news.html', news=news)
+
+
+@app.after_request
+def add_header(response):
+    if 'Cache-Control' not in response.headers:
+        response.headers['Cache-Control'] = 'no-store'
+    return response
