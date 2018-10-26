@@ -1,6 +1,9 @@
 from datetime import datetime, timedelta, date
 import pygal
 import os
+from pygal.style import Style
+custom_style = Style(
+    colors=['#4CAF50'])
 
 
 def getDateTime(s):
@@ -12,7 +15,7 @@ def getDateTime(s):
 
 
 def pricesGraph(candles):
-    date_chart = pygal.Line(x_label_rotation=20)
+    date_chart = pygal.Line(fill=False, x_label_rotation=20, show_legend=False, style=custom_style)
     date_chart.title = '10-Day Price Graph (USD)'
 
     count = 0

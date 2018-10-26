@@ -21,17 +21,26 @@ def currency(id):
     url_candles = 'https://api.nomics.com/v1/candles?key=' + API_KEY + '&interval=1d' + '&currency=' + id
     url_prices = 'https://api.nomics.com/v1/prices?key=' + API_KEY
     url_prices_history = 'https://api.nomics.com/v1/sparkline?key=' + API_KEY
+    url_news = 'https://newsapi.org/v2/top-headlines?sources=crypto-coins-news&apiKey=' + NEWS_API_KEY
 
+    news = requests.get(url_news).json()
     candles = requests.get(url_candles).json()
     prices = requests.get(url_prices).json()
     prices_history = requests.get(url_prices_history).json()
 
-    # data = [0, 1, 2, 3, 4, 5]
+    def getPrice(prices):
+        for coin in prices:
+            if coin['currency'] == id:
+                return coin['price']
+
+
     candlesGraph(candles)
 
     pricesGraph(candles)
 
-    return render_template('currency.html', candles=candles, id=id)
+    current_price = getPrice(prices)
+
+    return render_template('currency.html', candles=candles, id=id, news=news, current_price=current_price)
 
 
 @app.route('/news', methods=['GET', 'POST'])

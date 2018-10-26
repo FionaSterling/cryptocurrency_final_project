@@ -5,16 +5,15 @@
 # import numpy as np
 import pygal
 import os
+from pygal.style import DarkenStyle
+darken_style = DarkenStyle('#4CAF50')
 
 
 
 def candlesGraph(candles):
-    box_plot = pygal.Box()
-    # box_plot.y_labels = 5500, 6000, 6500, 7000, 7500, 8000
+    box_plot = pygal.Box(show_legend=False, style=darken_style)
     box_plot.title = '1-Month Candlestick Graph (USD)'
 
-    # using the value of the variable below for date string in box plot legend
-    # date = candles[0]['timestamp'][5:10]
 
 # [::-1] to reverse date order
     count = 0
