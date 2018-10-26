@@ -1,7 +1,7 @@
 from app import app
 from flask import render_template, jsonify, request
 import requests
-from config import API_KEY, NEWS_API_KEY
+# from config import API_KEY, NEWS_API_KEY
 from app.candles import candlesGraph
 from app.price_graph import pricesGraph
 
@@ -9,7 +9,7 @@ from app.price_graph import pricesGraph
 @app.route('/')
 @app.route('/index')
 def index():
-    url = 'https://api.nomics.com/v1/currencies?key=' + API_KEY
+    url = 'https://api.nomics.com/v1/currencies?key=' + app.config['API_KEY']
 
     currencies = requests.get(url).json()
 
@@ -18,10 +18,10 @@ def index():
 @app.route('/currency')
 @app.route('/currency/<id>', methods=['GET', 'POST'])
 def currency(id):
-    url_candles = 'https://api.nomics.com/v1/candles?key=' + API_KEY + '&interval=1d' + '&currency=' + id
-    url_prices = 'https://api.nomics.com/v1/prices?key=' + API_KEY
-    url_prices_history = 'https://api.nomics.com/v1/sparkline?key=' + API_KEY
-    url_news = 'https://newsapi.org/v2/top-headlines?sources=crypto-coins-news&apiKey=' + NEWS_API_KEY
+    url_candles = 'https://api.nomics.com/v1/candles?key=' + app.config['API_KEY'] + '&interval=1d' + '&currency=' + id
+    url_prices = 'https://api.nomics.com/v1/prices?key=' + app.config['API_KEY']
+    url_prices_history = 'https://api.nomics.com/v1/sparkline?key=' + app.config['API_KEY']
+    url_news = 'https://newsapi.org/v2/top-headlines?sources=crypto-coins-news&apiKey=' + app.config['NEWS_API_KEY']
 
     news = requests.get(url_news).json()
     candles = requests.get(url_candles).json()
@@ -45,7 +45,7 @@ def currency(id):
 
 @app.route('/news', methods=['GET', 'POST'])
 def news():
-    url_news = 'https://newsapi.org/v2/top-headlines?sources=crypto-coins-news&apiKey=' + NEWS_API_KEY
+    url_news = 'https://newsapi.org/v2/top-headlines?sources=crypto-coins-news&apiKey=' + app.config['NEWS_API_KEY']
 
     news = requests.get(url_news).json()
 
