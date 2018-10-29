@@ -15,7 +15,7 @@ def index():
 
     return render_template('index.html', currencies=currencies)
 
-@lru_cache(5)
+
 @app.route('/currency')
 @app.route('/currency/<id>', methods=['GET', 'POST'])
 def currency(id):
