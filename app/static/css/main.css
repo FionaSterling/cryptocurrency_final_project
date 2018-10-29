@@ -10,6 +10,7 @@
 
 .navbar a, .navbar a:hover {
   color: white;
+  text-decoration: none;
 }
 
 .dropbtn {
