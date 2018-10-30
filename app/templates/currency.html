@@ -13,8 +13,8 @@
     <div class="row">
       <div class="col-md-8">
         <h1>{{ id }}</h1>
-        <embed class="graph" type="image/svg+xml" src="../static/images/candles.svg" />
-        <embed class="graph" type="image/svg+xml" src="../static/images/prices.svg" />
+        <embed id="Graphs" class="graph" type="image/svg+xml" src="../static/images/candles.svg" />
+        <embed id="lineGraphs" class="graph" type="image/svg+xml" src="../static/images/prices.svg" />
       </div><!--Ending div for col-8-->
       <div class="col-md-4">
         <!--TODO: add current price to display-->
@@ -56,4 +56,12 @@
       </div><!--Ending div for col-4-->
     </div><!--Ending row-->
   </div><!--Ending container-->
+
+  <script>
+  $(document).ready(function() {
+    var url = "../static/images/candles.svg?rnd="+Math.random();
+    $('#Graphs').attr("src", url);
+  });
+  </script>
+
 {% endblock %}
