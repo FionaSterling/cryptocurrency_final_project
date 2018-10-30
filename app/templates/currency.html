@@ -58,10 +58,10 @@
   </div><!--Ending container-->
 
   <script>
-  $(document).ready(function() {
+  (function() {
     var url = "../static/images/candles.svg?rnd="+Math.random();
     $('#Graphs').attr("src", url);
-  });
+  })();
   </script>
 
 {% endblock %}
